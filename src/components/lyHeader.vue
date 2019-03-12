@@ -44,7 +44,7 @@
         z-index: 1;
         left: 0;
         top: 0;
-        background-image: url(../imgs/headbg.png);
+        background-image: url(../assets/headbg.png);
         background-size: 100% 100%;
         transition: all .4s;
       }
