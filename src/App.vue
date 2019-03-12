@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-    <audio id="music-audio" src="../../static/music.mp3"></audio>
-    <audio id="click-audio" src="../../static/click.mp3"></audio>
-    <span @click="playMusic" class="music-icon" :class="{mute:mute}"></span>
     <div>
       <ly-header @head-tab="headChange"></ly-header>
-      <router-view/>
+      <router-view keep-alive='true' />
+      <span @click="playMusic" class="music-icon" :class="{mute:mute}"></span>
+      <div>
+        <ly-header @head-tab="headChange"></ly-header>
+        <router-view/>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -15,7 +16,7 @@
   
   export default {
     name: 'App',
-    data: function(){
+    data: function() {
       return {
         mute: false
       }
@@ -84,23 +85,5 @@
   #app>div {
     display: flex;
     flex-flow: column;
-  }
-  
-  .music-icon {
-    position: absolute;
-    z-index: 101;
-    right: 0;
-    top: 0;
-    width: 36px;
-    height: 36px;
-    padding: 2px;
-    background-size: 100% 100%;
-    background-image: url('./imgs/music.png');
-    &:active {
-      transform: scale(.93);
-    }
-    &.mute {
-      background-image: url('./imgs/mute.png');
-    }
   }
 </style>
