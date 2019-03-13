@@ -1,21 +1,19 @@
 <template>
   <div id="app">
-    <audio id="music-audio" src="static/audio/music.mp3"></audio>
-    <audio id="click-audio" src="static/audio/click.mp3"></audio>
-    <span @click="playMusic" class="music-icon" :class="{mute:mute}"></span>
     <div>
       <ly-header @head-tab="headChange"></ly-header>
-      <router-view keep-alive='true'/>
+      <router-view keep-alive='true' />
     </div>
   </div>
 </template>
 
 <script>
   import lyHeader from './components/lyHeader';
+  import snowFall from '../static/js/snow'
   
   export default {
     name: 'App',
-    data: function(){
+    data: function() {
       return {
         mute: false
       }
@@ -26,23 +24,6 @@
     methods: {
       headChange: function(path) {
         console.log();
-      },
-      playMusic: function() {
-        if (!this.audioMusic) {
-          this.audioMusic = document.getElementById('music-audio');
-        }
-        this.audioMusic.currentTime = 0;
-        this.audioMusic.play();
-      },
-      playAudio: function() {
-        if (!this.audioClick) {
-          this.audioClick = document.getElementById('click-audio');
-        }
-        if (this.mute) {
-          return false;
-        }
-        this.audioClick.currentTime = 0;
-        this.audioClick.play();
       },
     }
   }
@@ -84,25 +65,5 @@
   #app>div {
     display: flex;
     flex-flow: column;
-  }
-  
-  .music-icon {
-    position: absolute;
-
-    
-    z-index: 101;
-    right: 0;
-    top: 0;
-    width: 36px;
-    height: 36px;
-    padding: 2px;
-    background-size: 100% 100%;
-    background-image: url('./assets/music.png');
-    &:active {
-      transform: scale(.93);
-    }
-    &.mute {
-      background-image: url('./assets/mute.png');
-    }
   }
 </style>

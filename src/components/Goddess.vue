@@ -5,7 +5,7 @@
         <div v-for="(item,key) in imgSrcArr" :key="key" class="swiper-slide" :class="'key'+key+1">
           <div>
             <span class="date-title">{{(item.src)|toDate}}</span>
-            <span class="page-title"><i>{{imgIndex}}</i>/{{imgSrcArr.length}}</span>
+            <!-- <span class="page-title"><i>{{imgIndex}}</i>/{{imgSrcArr.length}}</span> -->
             <h3 class="animated slide-1" :class="{slideInLeft:key==imgIndex-1}">{{item.text[0]}}</h3>
             <h3 class="animated slide-2" :class="{slideInRight:key==imgIndex-1}">{{item.text[1]}}</h3>
             <img :data-src="'static/img/'+item.src" class="swiper-lazy">
@@ -37,15 +37,16 @@ export default {
   },
   mounted: function() {
     var self = this;
-    window.swiperEle = new Swiper(".swiper-container", {
+    var swiperEle = new Swiper(".swiper-container", {
       slidesPerView: 1,
       effect: "coverflow",
+      loop: true,
       // slidesPerColumn: 2,
       // spaceBetween: 3,
       // freeMode: true,
       pagination: {
         el: ".swiper-pagination",
-        type: "progressbar",
+        type: "fraction",
         clickable: true
       },
       lazy: {
@@ -53,12 +54,12 @@ export default {
         loadPrevNextAmount: 4,
         loadOnTransitionStart: true
       },
-      on: {
-        slideNextTransitionStart: function() {
-          console.log("end");
-          self.imgIndex = this.activeIndex + 1;
-        }
-      }
+      // on: {
+      //   slideNextTransitionStart: function() {
+      //     console.log("end");
+      //     self.imgIndex = this.activeIndex;
+      //   }
+      // }
     });
   },
   filters: {
@@ -128,7 +129,21 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
-
+.swiper-pagination.swiper-pagination-fraction{
+      z-index: 2;
+      position: absolute;
+      display: inline-block;
+      width: auto;
+      bottom: 5px;
+      padding: 0 6px;
+      border-radius: 18px;
+      line-height: 18px;
+      font-size: 12px;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      right: 10px;
+      left: auto;
+}
 .swiper-slide {
   text-align: center;
   font-size: 18px;
@@ -146,7 +161,8 @@ export default {
     height: 100%;
     max-width: 400px !important;
     .date-title,
-    .page-title {
+    .page-title
+    {
       z-index: 2;
       position: absolute;
       display: inline-block;
@@ -164,6 +180,7 @@ export default {
       right: 10px;
     }
     img {
+      filter: blur(100px);
       float: left;
       width: 100%;
       height: 100%;
@@ -175,14 +192,15 @@ export default {
       width: 100%;
       padding: 0 16px;
       color: white;
-      font-size: 30px;
+      font-size: 22px;
       font-weight: normal;
       text-align: left;
+      text-shadow: 0 0 3px #9633FF, 0 0 3px #9633FF, 0 0 3px #9633FF;
       &:hover {
         color: #000;
       }
       &.slide-1 {
-        bottom: 80px;
+        bottom: 68px;
       }
       &.slide-2 {
         bottom: 28px;
@@ -197,27 +215,5 @@ export default {
   animation-duration: 0.6s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.5s;
-}
-
-.fade-enter,
-.fade-leave {
-  transform: translate3d(60px, 0, 0);
-  opacity: 0;
-}
-
-.faderight-enter-active,
-.faderight-leave-active {
-  transition: all 1.8s;
-}
-
-.faderight-enter,
-.faderight-leave {
-  transform: translate3d(400px, 0, 0);
-  opacity: 0;
 }
 </style>
