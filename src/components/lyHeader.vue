@@ -1,27 +1,32 @@
 <template>
   <div class="tab-mode" :class="'tab-'+tabIndex">
-    <div :class="{active:tabIndex==0}" @click="headChange('/', 0)">camera</div>
-    <div :class="{active:tabIndex==1}" @click="headChange('/wx', 1)">wx pic</div>
+    <div>
+      <div :class="{active:tabIndex==0}" @click="headChange('/', 0)">goddess</div>
+      <div :class="{active:tabIndex==1}" @click="headChange('/camera', 1)">camera</div>
+      <div :class="{active:tabIndex==2}" @click="headChange('/wx', 2)">wx pic</div>
+    </div>
   </div>
 </template>
  
-<script>  
+<script>
   export default {
     props: [],
-    data: function(){
+    data: function() {
       return {
         tabIndex: 0
       }
     },
-    mounted: function(){
-      if(this.$route.name == 'wxgoddess'){
+    created: function() {
+      if (this.$route.name == 'goddess') {
         this.tabIndex = 1;
+      } else if (this.$route.name == 'wxgoddess') {
+        this.tabIndex = 2;
       }
     },
     methods: {
-      headChange: function(path, index){
+      headChange: function(path, index) {
+        this.$emit('music');
         this.tabIndex = index;
-        this.$emit('head-tab', path);
         this.$router.push(path);
       }
     }
@@ -29,39 +34,34 @@
 </script>
 
 <style scoped lang="scss">
-  .tab-mode{
+.tab-mode{
+  box-shadow: 0 0 6px #999;
+}
+  .tab-mode>div {
     line-height: 40px;
     height: 40px;
     flex-grow: 0;
+    flex-shrink: 0;
+    margin: 10px;
     display: flex;
-    background: #C70302;
-      &:after{
-        display: inline-block;
-        content: '';
-        width: 50%;
-        height: 40px;
-        position: absolute;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        background-image: url(../assets/headbg.png);
-        background-size: 100% 100%;
-        transition: all .4s;
-      }
-      &.tab-1:after{
-        left: 50%;
-      }
-    div{
+    background: rgba(0, 0, 0, .3);
+    border-radius: 30px;
+    box-shadow: 0 0 3px inset #666;
+    overflow: hidden;
+    div {
       flex-grow: 1;
-      color: white;
-      text-align: center;
       position: relative;
       z-index: 2;
-      color: #333;
-      font-size: 22px;
-        transition: all .4s;
-      &.active{
-        color: #17ca14;
+      font-size: 28px;
+      // font-weight: bold;
+      color: white;
+      // text-shadow: 0 0 3px #9633FF, 0 0 4px #9633FF, 0 0 5px #9633FF;
+      text-align: center;
+      transition: all .4s;
+      &.active {
+        background: rgba(0, 0, 0, .2);
+        color: #9633FF;
+        text-shadow: 0 0 3px #fff, 0 0 4px #fff, 0 0 5px #fff;
       }
     }
   }

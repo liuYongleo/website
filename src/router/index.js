@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Meet from '@/components/meet'
 import Goddess from '@/components/Goddess'
 import GoddessWx from '@/components/GoddessWx'
 const VueTouch = require('vue-touch');
@@ -11,6 +12,11 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'meet',
+      component: Meet
+    },
+    {
+      path: '/camera',
       name: 'goddess',
       component: Goddess
     },
