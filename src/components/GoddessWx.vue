@@ -21,7 +21,7 @@
 import Swiper from "swiper";
 import "../../static/css/swiper.min.css";
 import "../../static/css/animate.css";
-import imgJson from "../../static/cfg/wx.json";
+import imgJson from "../../static/wx.json";
 
 export default {
   name: "wx",
@@ -60,6 +60,11 @@ export default {
   position: relative;
   display: flex;
   flex-flow: column;
+  .text-area {
+    flex-grow: 1;
+    background-image: url("../assets/textbg.png");
+    background-size: cover;
+  }
 }
 
 .swiper-container {
@@ -100,7 +105,7 @@ export default {
     height: 100%;
     max-width: 400px !important;
     img {
-      // filter: blur(100px);
+      filter: blur(100px);
       float: left;
       width: 100%;
       height: 100%;
