@@ -234,7 +234,7 @@
         right: 10px;
       }
       img {
-        filter: blur(100px);
+        // filter: blur(100px);
         float: left;
         width: 100%;
         height: 100%;

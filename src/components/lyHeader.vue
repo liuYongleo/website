@@ -34,9 +34,10 @@
 </script>
 
 <style scoped lang="scss">
-.tab-mode{
-  box-shadow: 0 0 6px #999;
-}
+  .tab-mode {
+    box-shadow: 0 0 6px #999;
+  }
+  
   .tab-mode>div {
     line-height: 40px;
     height: 40px;

@@ -47,18 +47,18 @@
     flex-flow: column;
     text-align: left;
     padding-top: 10px;
-    .bg-img-pic{
+    .bg-img-pic {
       position: absolute;
       right: 15px;
       top: 53px;
       width: 128px;
       height: 132px;
       overflow: hidden;
-      img{
+      img {
         float: left;
-        width: 200px;
-        height: 300px;
-        margin-left: -10px;
+        width: 190px;
+        height: 280px;
+        margin-left: -6px;
         margin-top: -20px;
       }
     }
